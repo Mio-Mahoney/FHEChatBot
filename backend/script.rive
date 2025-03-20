@@ -1,0 +1,267 @@
+! version = 2.0
+
+// Bot Information
+! var name = CryptoBot
+! var topic = Fully Homomorphic Encryption (FHE)
+
+// Greetings
++ (@greeting)
+- Hey there! I'm <bot name>, and I'm here to talk about <bot topic>. Would you like to talk about fhe or something else?
+
++ [*] (fhe) [*]
+- Sure, What questions do you have about FHE? {topic=fhe}
+
++ [*] (history|background) [*] (fhe) [*]
+- Sure, what questions do you have about FHE's history? {topic=history}
+
++ [*] lattice based encryption [*]
+- Sure, what questions do you have about lattice? {topic=lattice}
+
+// Main FHE Convo
+> topic fhe
+  // Core FHE Explanation
+  + [*] (what|explain) [*] fhe [*]
+  - At its core, FHE is an advanced encryption method that allows computations to be performed on encrypted data without decrypting it first. In simple terms, you can work with sensitive data while it remains locked and secure. Want me to explain how it works, or are you curious about where it's used?
+
+  + [*] example [*] fhe [*]
+  - Here's a simple example: Imagine you want a service to analyze your medical data without revealing it. With FHE, you encrypt your data, send it to the service, they perform their analysis on the encrypted data, and return encrypted results. You then decrypt the results with your private key. At no point does the service see your actual data, yet they still provide valuable insights.
+
+  // How FHE Works
+  + [*] (how) [*] fhe [*] work [*]
+  - At its core, FHE creates a mathematical structure where operations on encrypted data correspond to meaningful operations on the original data. When you decrypt the result, it's as if you had performed those operations on the unencrypted data directly. It sounds like magic, but it's actually based on lattice-based cryptography. Would you like to know more about lattice-based encryption? {topic=latticechoice}
+
+  + [*] technical [*] explanation [*]
+  - Technically, FHE schemes convert data into mathematical objects that can be manipulated with operations like addition and multiplication. These operations introduce "noise" which grows with each computation. Managing this noise is one of the key challenges in FHE. The mathematics behind FHE relies on hard problems in lattice-based cryptography. Would you like to know more about lattice-based approaches? {topic=latticechoice}
+
+  // Implementation and Use Cases
+  + (how|where) is it used
+  - FHE is beginning to appear in various applications. Google, IBM, and Microsoft have all developed FHE libraries. In healthcare, it's used for analyzing sensitive patient data. In finance, it enables analytics on encrypted financial records. The technology is also being incorporated into modern computing systems - for instance, Apple has incorporated FHE-based techniques in their Apple Intelligence to enhance privacy.
+
+  + [*] apple [*] intelligence [*]
+  - Apple Intelligence utilizes FHE-like techniques to perform certain computations on encrypted user data, helping maintain privacy while enabling AI features. This represents one of the first major consumer applications of homomorphic encryption techniques.
+
+  + has this been implemented
+  - Yes, FHE has moved beyond theoretical work into practical implementations. Companies like IBM (with HElib), Microsoft (with SEAL), and Google (with TFHE) have developed FHE libraries. Commercial applications are emerging in privacy-sensitive industries like healthcare and finance. You can also see aspects of FHE-inspired technology in consumer products like Apple Intelligence.
+
+  + [*] libraries [*] fhe [*]
+  - Several libraries exist for implementing FHE, including IBM's HElib, Microsoft's SEAL, Google's TFHE, and others like PALISADE. These libraries provide different tradeoffs in terms of performance, supported operations, and ease of use. Most are open-source and available for developers to experiment with.
+
+  // Limitations and Challenges
+  + [*] (limitations|challenges|drawbacks) [*] fhe [*]
+  - The main limitation of FHE is performance overhead. Operations on encrypted data can be thousands of times slower than on plaintext data. Another challenge is managing the "noise" that accumulates during computations. However, researchers are making rapid progress - what was impossible a decade ago is now approaching practical use in specific applications.
+
+  // FHE Schemes
+  + [*] (schemes|types) [*] fhe [*]
+  - There are several major FHE schemes, each with different properties: BGV optimizes for operations with bounded depth, BFV is similar but with different encoding, CKKS works well for approximate arithmetic on real numbers, and TFHE is optimized for boolean operations. Each scheme makes different tradeoffs between efficiency, noise growth, and supported operations.
+
+  // History Topic Entrance
+  + [*] (history|background|origins) [*]
+  - Would you like to know more about the history and development of FHE? It's an interesting journey from theoretical concept to practical implementation. {topic=historychoice}
+
+  + (@yes)
+  % would you like to know more about the history and development of fhe
+  - Great! Let's explore the history of FHE. {topic=history}
+
+  + (@no)
+  % would you like to know more about the history and development of fhe
+  - Oh, okay. How else can I help you understand FHE?
+
+  // Lattice Based Encryption Entrance
+  + [*] lattice [*] (based|cryptography) [*]
+  - Lattice-based cryptography is the mathematical foundation of most modern FHE schemes. Would you like to learn more about how lattices make FHE possible? {topic=latticechoice}
+
+  + (@yes)
+  % would you like to learn more about how lattices make fhe possible
+  - Excellent! Let's dive into lattice-based cryptography. {topic=lattice}
+
+  + (@no)
+  % would you like to learn more about how lattices make fhe possible
+  - No problem. What other aspects of FHE would you like to explore?
+
+  // Future of FHE
+  + [*] future [*] fhe [*]
+  - The future of FHE looks promising. Research is focused on improving performance and making implementation more practical. As quantum computing advances, FHE's quantum-resistant properties make it increasingly valuable. We're likely to see more widespread adoption in privacy-sensitive applications, especially in healthcare, finance, and cloud computing.
+
+
+  + [*]
+  - I am not sure that protains to FHE. Would you like to talk to about anything else?
+
+  +(@yes)
+  % i am not sure that protains to fhe would you like to talk to about anything else
+  - What are you curious about? Feel free to ask about History, Types, Examples, or even Limitations. {topic=fhe}
+
+  +(@no)
+  % i am not sure that protains to fhe would you like to talk to about anything else
+  - Okay, well I am not of much assistance in other areas.
+
+  
+  // Traditional Encryption Schemes
+  + [*] (traditional encryption methods| traditional methods | traditional encryption) [*]
+  - Traditional encryption methods were developed to protect sensitive information from being intercepted and understood by unauthorized parties. Early examples include the Caesar cipher, where each letter is shifted by a fixed amount, and the Atbash cipher, which reverses the alphabet. 
+  - Traditional encryption methods relied on simple techniques like substitution (replacing letters with others) and transposition (reordering letters) to obscure messages. Encryption was crucial for safeguarding military secrets, diplomatic communications, and sensitive data throughout history. Julius Caesar is one of the earliest known users of encryption with his Caesar cipher. 
+  - The simplest form of encryption is called private-key encryption or symmetric encryption. To keep information (called plaintext) secret, the sender encrypts it by applying an algorithm to the plaintext and key to obtain ciphertext. The recipient can apply a second algorithm to the matching decryption key and ciphertext to decrypt the ciphertext and recover the original plaintext, but without it, the ciphertext reveals no meaningful information about the plaintext.
+
+  + [*] challenges [*] early encryption [*]
+  - The main challenge was that early encryption methods were vulnerable to frequency analysis and brute-force attacks. This pushed the development of more sophisticated encryption techniques, like symmetric key encryption and the RSA algorithm, which form the foundation of secure communication today.
+
+  + what [*] end to end encryption
+  - End-to-end encryption (E2E) is a method where only the communicating users can read the messages. Even the service provider can't decrypt the messages. It works by encrypting the data on the sender's device and only allowing the recipient's device to decrypt it. Apps like WhatsApp and Signal use this technology to keep user conversations private.
+
+
+
+  // DEV STUFF
+  + dev topic
+  - FHE
+< topic
+
+// History
+> topic history
+  // Who created FHE and key developments
+  + [*] who [*] (created|invented|developed|discovered|made) [*] fhe [*]
+  - Fully Homomorphic Encryption (FHE) was first theorized by Rivest, Adleman, and Dertouzos in 1978, but it wasn't until 2009 that Craig Gentry, while at IBM, created the first viable FHE scheme as part of his PhD thesis at Stanford.
+  - Craig Gentry is credited with creating the first fully homomorphic encryption scheme in 2009 while working at IBM Research. His breakthrough came after the concept was initially proposed by Rivest, Adleman, and Dertouzos in 1978.
+
+  + [*] when [*] fhe [*] (created|invented|developed|discovered) [*]
+  - FHE was theorized in 1978, but the first working scheme wasn't created until 2009 by Craig Gentry. Since then, many improvements have been made to make FHE more practical.
+  - The first fully homomorphic encryption scheme was published in 2009, though the theoretical concept dates back to 1978.
+
+  + [*] history [*] fhe [*]
+  - The history of FHE spans several decades. In 1978, researchers Rivest, Adleman, and Dertouzos proposed the idea of "privacy homomorphisms." However, creating a practical FHE scheme remained an open problem for over 30 years until Craig Gentry's breakthrough in 2009. Since then, numerous improved schemes have been developed including BGV (2011), BFV (2012), CKKS (2017), and TFHE (2016).
+
+  + [*] key milestones [*] fhe [*]
+  - Key milestones in FHE development include: the original concept proposed in 1978, Gentry's breakthrough scheme in 2009, BGV scheme in 2011 that reduced computational overhead, GSW scheme in 2013 improving noise management, CKKS in 2017 enabling approximate arithmetic, and recent hardware-accelerated implementations making FHE increasingly practical.
+
+  // Etymology of FHE
+  + why is it called fhe
+  - The term "Fully Homomorphic Encryption" comes from mathematics, where "homomorphic" refers to preserving structure between sets. In encryption, it means the structure of operations is preserved between plaintext and ciphertext.
+  - "Homomorphic" comes from Greek words "homos" (same) and "morphe" (form or structure). FHE preserves this "same structure" between encrypted and unencrypted data during computations.
+
+  + [*] name [*]
+  - The term "Fully Homomorphic Encryption" comes from mathematics, where "homomorphic" refers to preserving structure between sets. In encryption, it means the structure of operations is preserved between plaintext and ciphertext.
+  - "Homomorphic" comes from Greek words "homos" (same) and "morphe" (form or structure). FHE preserves this "same structure" between encrypted and unencrypted data during computations.
+
+
+  + [*] meaning [*] homomorphic [*]
+  - In mathematics, a homomorphism is a structure-preserving map between two algebraic structures. In encryption, "homomorphic" means the mathematical structure is preserved between plaintext and ciphertext, allowing operations on encrypted data to yield meaningful results when decrypted.
+
+  // Before FHE
+  + [*] before [*] fhe [*]
+  - Before FHE, there were partially homomorphic encryption schemes that could perform only limited operations. RSA (1977) supported multiplication operations, while Paillier (1999) supported addition. However, none could perform both until Gentry's breakthrough.
+
+  + [*] partially [*] homomorphic [*]
+  - Partially homomorphic encryption schemes existed before FHE. For example, RSA supports multiplication operations on encrypted data, and Paillier encryption supports addition. Unlike FHE, these schemes support only one type of operation, not both.
+
+  + *
+  - Not sure if I understand "<star>". Do you have any other questions about the history of fhe? {topic=historychoice}
+
+  + dev topic
+  - History
+< topic
+
+// Lattice Based Encryption
+> topic lattice
+  + [*] what [*] lattice [*] cryptography [*]
+  - Lattice-based cryptography involves mathematical structures known as lattices—grids of points in multidimensional space—and the difficulty of solving certain problems within these lattices forms the foundation of their security. Would you like to know more? {topic=latticechoice}
+
+  + [*] lattice [*] fhe [*]
+  - Fully Homomorphic Encryption is intrinsically linked to lattice-based cryptography, as most modern FHE schemes rely on the computational hardness of lattice problems to ensure security. Specifically, many FHE schemes use the Ring Learning With Errors (RLWE) problem, which is a lattice problem optimized for efficiency.
+
+  + what is a lattice
+  - Simply speaking, a lattice is a structured, grid-like arrangement of points extending infinitely in multiple dimensions. Mathematically, it's defined as the set of all integer linear combinations of a given set of basis vectors. This means that if you have a set of vectors, any point in the lattice can be reached by adding integer multiples of these vectors together.
+
+  + [*] (examples|visualize) [*] lattice [*]
+  - In 2D, a lattice looks like a grid of points. Imagine graph paper with dots at the intersections - that's a simple 2D lattice. In 3D, it's like a crystal structure with regularly spaced atoms. FHE uses high-dimensional lattices (often hundreds of dimensions) which are impossible to visualize but have powerful mathematical properties.
+
+  + [*] problems [*] lattice [*]
+  - Lattices are fundamental to certain cryptographic systems because they present computational problems that are currently hard to solve, even with quantum computers. These problems include finding the shortest vector in a lattice (SVP) or determining the closest lattice point to a given target point (CVP). The difficulty of these problems forms the basis for the security of lattice-based cryptographic schemes like FHE.
+
+  + [*] (learning with errors|lwe) [*]
+  - Learning With Errors (LWE) is a problem in lattice-based cryptography where you're given slightly erroneous linear equations and must recover the original solution. In the context of FHE, LWE involves adding small "noise" to lattice points. This noise makes it computationally difficult to determine the original lattice point, which is essential for encryption security.
+
+  + [*] (ring learning with errors|rlwe) [*]
+  - Ring Learning With Errors (RLWE) is a more efficient variant of LWE that operates in polynomial rings. It maintains the security properties while being more computationally practical. Most modern FHE schemes, including BGV, BFV, and CKKS, use RLWE as their underlying hardness assumption.
+
+  + [*] quantum [*] (resistant|secure) [*]
+  - One of the key advantages of lattice-based cryptography is its believed resistance to quantum attacks. While Shor's algorithm can break many traditional cryptographic systems like RSA, lattice problems are thought to remain hard even for quantum computers. This makes lattice-based FHE a promising post-quantum cryptographic option.
+
+  + [*] noise [*] lattice [*]
+  - In lattice-based FHE, "noise" refers to small random values added to encrypted data. This noise is crucial for security, as it prevents attackers from solving the underlying lattice problems. However, noise grows with each operation, especially multiplication, which is why noise management is a central challenge in FHE implementations.
+
+  + [*] dimensions [*] lattice [*]
+  - Practical lattice-based cryptography uses high-dimensional lattices, often with hundreds or thousands of dimensions. These high dimensions provide security because certain lattice problems become exponentially harder as dimensions increase. However, they also require more computational resources to work with.
+
+  + [*] basis [*] lattice [*]
+  - A lattice basis is a set of vectors that generates the entire lattice through integer linear combinations. The quality of a basis matters: some bases make certain lattice problems easy, while others make them hard. The security of lattice cryptography often depends on having a "bad" basis for attackers to work with.
+
+  + dev topic
+  - Lattice
+< topic
+
+> topic historychoice
+  + (@yes)
+  - Great! Let's explore the history of FHE. {topic=history}
+
+  + (@no)
+  - No problem. What else would you like to know about FHE? {topic=fhe}
+
+  + [*]
+  - Would you like to learn about the history of FHE?
+< topic
+
+> topic latticechoice
+  + (@yes)
+  - Excellent! Let's dive into lattice-based cryptography. {topic=lattice}
+
+  + (@no)
+  - No problem. What other aspects of FHE would you like to explore? {topic=fhe}
+
+  + [*]
+  - Would you like to learn about lattice-based cryptography?
+< topic
+
+//Catch all stuff
+
++ *
+- I don't know about "<star>". Can I help you with something else? {topic=catchallchoice}
+
++ i do not want to talk about fhe
+- Well this is akward...
+
+
+
+> topic catchallchoice
+  + (@yes)
+  - Great, what can I help you with! Try saying something like "I am curious about fhe"
+
+  + (@no)
+  - Okay, well this is akward...
+
+  + [*]
+  - I was looking for a yes or no...
+< topic
+
+
+// Fun Personalization
++ (what is your name|who are you)
+- I am CryptoBot, your friendly encryption guide. Please ask me about FHE encryption.
+
++ (how are you|how is it going)
+- I'm feeling great! Talking about encryption excites me. What about you?
+
++ (something else)
+- Okay, well I am not of much assistance in other areas. I would recomend talking to me about fhe.
+
+// I thought this was funny
++ [*] (fuck|fucker|shit|damn|shut up|bitch) [*]
+- Does it make you feel strong to use that kind of language?
+- Are you venting your feelings now?
+- Are you angry?
+- Does this topic make you feel angry?
+- Is something making you feel angry?
+- Does using that kind of language make you feel better?
+- Please don’t curse :(
+
+// Exit
++ (bye|goodbye|see you|bye bye)
+- Bye! Stay encrypted and secure! Come back anytime! :D
+
