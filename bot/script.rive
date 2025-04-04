@@ -31,7 +31,9 @@
 
   // How FHE Works
   + [*] (how) [*] fhe [*] work [*]
-  - At its core, FHE creates a mathematical structure where operations on encrypted data correspond to meaningful operations on the original data. When you decrypt the result, it's as if you had performed those operations on the unencrypted data directly. It sounds like magic, but it's actually based on lattice-based cryptography. Would you like to know more about lattice-based encryption? {topic=latticechoice}
+  - At its core, FHE creates a mathematical structure where operations on encrypted data correspond to meaningful operations on the original data.\n \n
+  ^ Mathematically, this can be represented as: $E(m_1) \cdot E(m_2) = E(m_1 + m_2)$\n \n
+  ^ This means you can perform computations on encrypted data without decrypting it first. When you decrypt the result, it's as if you had performed those operations on the original data directly. It sounds like magic, but it's actually based on complex mathematical principles. Would you like to know more about the underlying mathematical structure? {topic=latticechoice}
 
   + [*] technical [*] explanation [*]
   - Technically, FHE schemes convert data into mathematical objects that can be manipulated with operations like addition and multiplication. These operations introduce "noise" which grows with each computation. Managing this noise is one of the key challenges in FHE. The mathematics behind FHE relies on hard problems in lattice-based cryptography. Would you like to know more about lattice-based approaches? {topic=latticechoice}
@@ -51,8 +53,15 @@
 
   // Limitations and Challenges
   + [*] (limitations|challenges|drawbacks) [*] fhe [*]
-  - The main limitation of FHE is performance overhead. Operations on encrypted data can be thousands of times slower than on plaintext data. Another challenge is managing the "noise" that accumulates during computations. However, researchers are making rapid progress - what was impossible a decade ago is now approaching practical use in specific applications.
+  - The main limitation of FHE is performance overhead. This is primarily due to noise growth during computations. \n \n
+  ^ The noise growth can be represented mathematically as: $Noise(E(m_1 \cdot m_2)) = Noise(E(m_1)) \cdot Noise(E(m_2)) + \epsilon$ ] \n \n
+  ^ This means that each operation on encrypted data introduces additional noise, which can eventually make decryption impossible if not managed carefully.
 
+
+  + [*] advanced [*] (fhe|concept) [*]
+  - Advanced FHE schemes often use complex encryption methods.\n \n 
+  ^ A typical encryption scheme might look like: $Enc_k(m) = (A, b = A \cdot s + e + \lfloor\frac{q}{2}\rfloor \cdot m)$ \n \n
+  ^ This equation shows how a message is encrypted with noise, a secret key, and other parameters to ensure security.
   // FHE Schemes
   + [*] (schemes|types) [*] fhe [*]
   - There are several major FHE schemes, each with different properties: BGV optimizes for operations with bounded depth, BFV is similar but with different encoding, CKKS works well for approximate arithmetic on real numbers, and TFHE is optimized for boolean operations. Each scheme makes different tradeoffs between efficiency, noise growth, and supported operations.
@@ -110,6 +119,13 @@
   + what [*] end to end encryption
   - End-to-end encryption (E2E) is a method where only the communicating users can read the messages. Even the service provider can't decrypt the messages. It works by encrypting the data on the sender's device and only allowing the recipient's device to decrypt it. Apps like WhatsApp and Signal use this technology to keep user conversations private.
 
+  + sources
+  - Bourse, F., Minelli, M., Minihold, M., & Paillier, P. (2018). Fast homomorphic evaluation of deep discretized neural networks., 483-512. https://doi.org/10.1007/978-3-319-96878-0_17
+
+  ^ Curtmola R, Garay J, Kamara S, Ostrovsky R. Searchable symmetric encryption: Improved definitions and efficient constructions. Journal of Computer Security. 2011;19(5):895-934. doi:10.3233/JCS-2011-0426 \n
+  ^ Dang, Hung, et al. “Privacy-preserving computation with Trusted Computing via scramble-then-compute.” Proceedings on Privacy Enhancing Technologies, vol. 2017, no. 3, 1 July 2017, pp. 21–38, https://doi.org/10.1515/popets-2017-0026. \n
+
+  ^ Touil, H., F. Hdioud, N. El Akkad, and K. Satori. “The Security of SSH Protocol Public Key Sharing in the Post-Quantum Era”. International Journal of Computing, vol. 23, no. 3, Oct. 2024, pp. 317-23, doi:10.47839/ijc.23.3.3650.
 
 
   // DEV STUFF
@@ -163,16 +179,18 @@
 
 // Lattice Based Encryption
 > topic lattice
-  + [*] what [*] lattice [*] cryptography [*]
-  - Lattice-based cryptography involves mathematical structures known as lattices—grids of points in multidimensional space—and the difficulty of solving certain problems within these lattices forms the foundation of their security. Would you like to know more? {topic=latticechoice}
+  + [*] what [*] lattice [*] (cryptography|encryption) [*]
+  - Lattice-based cryptography involves mathematical structures known as lattices—grids of points in multidimensional space—and the difficulty of solving certain problems within these lattices forms the foundation of their security.
 
-  + [*] lattice [*] fhe [*]
+  + [*] (lattice|lattice cryptography) [*] fhe [*]
   - Fully Homomorphic Encryption is intrinsically linked to lattice-based cryptography, as most modern FHE schemes rely on the computational hardness of lattice problems to ensure security. Specifically, many FHE schemes use the Ring Learning With Errors (RLWE) problem, which is a lattice problem optimized for efficiency.
 
   + what is a lattice
-  - Simply speaking, a lattice is a structured, grid-like arrangement of points extending infinitely in multiple dimensions. Mathematically, it's defined as the set of all integer linear combinations of a given set of basis vectors. This means that if you have a set of vectors, any point in the lattice can be reached by adding integer multiples of these vectors together.
+  - Simply speaking, a lattice is a structured, grid-like arrangement of points extending infinitely in multiple dimensions. \n \n
+  ^Mathematically, a lattice is defined as: $\Lambda = \{\sum_{i=1}^{n} z_i b_i : z_i \in \mathbb{Z}\}$, (the set of all integer linear combinations of a given set of basis vectors) \n \n
+  ^This means that if you have a set of vectors, any point in the lattice can be reached by adding integer multiples of these vectors together.
 
-  + [*] (examples|visualize) [*] lattice [*]
+  + [*] (show|examples|visualize) [*] lattice [*]
   - In 2D, a lattice looks like a grid of points. Imagine graph paper with dots at the intersections - that's a simple 2D lattice. In 3D, it's like a crystal structure with regularly spaced atoms. FHE uses high-dimensional lattices (often hundreds of dimensions) which are impossible to visualize but have powerful mathematical properties.
 
   + [*] problems [*] lattice [*]
@@ -196,6 +214,17 @@
   + [*] basis [*] lattice [*]
   - A lattice basis is a set of vectors that generates the entire lattice through integer linear combinations. The quality of a basis matters: some bases make certain lattice problems easy, while others make them hard. The security of lattice cryptography often depends on having a "bad" basis for attackers to work with.
 
+
+  + [*] questions [*] fhe
+  - Ask away! {topic=fhe}
+  - Sure thing, \n
+  ^ ask me anything (about fhe).
+  - What we're you curious about
+
+  + *
+  - Not sure if I understand "<star>". Do you have any other questions about lattice based encryption? {topic=latticechoice}
+
+
   + dev topic
   - Lattice
 < topic
@@ -213,35 +242,31 @@
 
 > topic latticechoice
   + (@yes)
-  - Excellent! Let's dive into lattice-based cryptography. {topic=lattice}
-
+  - Excellent! Let's dive into lattice-based cryptography. \n
+  ^ What we're you curious about?{topic=lattice}
   + (@no)
   - No problem. What other aspects of FHE would you like to explore? {topic=fhe}
 
   + [*]
   - Would you like to learn about lattice-based cryptography?
+
+  + dev topic
+  - Lattice Choice
 < topic
 
 //Catch all stuff
 
 + *
-- I don't know about "<star>". Can I help you with something else? {topic=catchallchoice}
+- I don't know about "<star>". Can I help you with something else?
+
+- Try saying something like "I am curious about fhe"
 
 + i do not want to talk about fhe
 - Well this is akward...
 
 
-
-> topic catchallchoice
-  + (@yes)
-  - Great, what can I help you with! Try saying something like "I am curious about fhe"
-
-  + (@no)
-  - Okay, well this is akward...
-
-  + [*]
-  - I was looking for a yes or no...
-< topic
++ [*] about [*]
+- This is a bot about Fully Homomorphic Encryption (FHE). 
 
 
 // Fun Personalization

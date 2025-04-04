@@ -6,12 +6,9 @@
 		sender: 'user' | 'bot';
 	};
 
-	let latex = '<img src="https://latex.codecogs.com/svg.image?\frac{a}{b}" title="\frac{a}{b}" />';
-
-	let messages: Array<Message> = [];
-	let newMessage = '';
+	let messages = $state<Array<Message>>([]);
+	let newMessage = $state('');
 	let chatContainer: HTMLElement;
-
 	async function getReply(message: string): Promise<string> {
 		const formData = new FormData();
 		formData.append('msg', message);
@@ -24,6 +21,14 @@
 		return response.text();
 	}
 
+	function renderMathJax() {
+		if (window.MathJax) {
+			window.MathJax.typesetPromise([chatContainer]).catch((err: any) =>
+				console.error('MathJax error:', err)
+			);
+		}
+	}
+
 	async function sendMessage() {
 		if (!newMessage.trim()) return;
 
@@ -34,11 +39,6 @@
 		setTimeout(async () => {
 			try {
 				let reply = await getReply(userMessage);
-				// const reply = 'hi';
-
-				// Latex Logic
-				if (reply == 'EQ1') reply = latex;
-				else if (reply == 'EQ2') reply = latex;
 
 				messages = [...messages, { text: reply, sender: 'bot' }];
 			} catch (error) {
@@ -52,6 +52,7 @@
 					chatContainer.scrollTop = chatContainer.scrollHeight;
 				}
 			}, 0);
+			setTimeout(renderMathJax, 0);
 		}, 500);
 	}
 
@@ -61,7 +62,58 @@
 		}
 	}
 
-	// Load the RiveScript file on component mount
+	onMount(() => {
+		const existingScript = document.getElementById('MathJax-script');
+		if (existingScript) {
+			existingScript.remove();
+		}
+
+		const script = document.createElement('script');
+		script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+		script.async = true;
+		script.id = 'MathJax-script';
+
+		// Configure MathJax
+		window.MathJax = {
+			tex: {
+				inlineMath: [
+					['$', '$'],
+					['\\(', '\\)']
+				],
+				displayMath: [
+					['$$', '$$'],
+					['\\[', '\\]']
+				]
+			},
+			svg: {
+				fontCache: 'global'
+			},
+			options: {
+				renderActions: {
+					addMenu: [],
+					checkLoading: []
+				}
+			},
+			startup: {
+				ready: () => {
+					window.MathJax.startup.defaultReady();
+					renderMathJax(); // Initial rendering
+				}
+			}
+		};
+		document.head.appendChild(script);
+
+		return () => {
+			if (document.getElementById('MathJax-script')) {
+				document.getElementById('MathJax-script').remove();
+			}
+		};
+	});
+	$effect(() => {
+		if (messages.length) {
+			setTimeout(renderMathJax, 0);
+		}
+	});
 </script>
 
 <svelte:head>
@@ -75,11 +127,12 @@
 		{#each messages as message}
 			<div class="mb-3 flex {message.sender === 'user' ? 'justify-end' : ''}">
 				<div
-					class="max-w-[70%] rounded-2xl px-4 py-2 {message.sender === 'user'
+					class=" inline-block max-w-[70%] whitespace-pre-wrap break-words rounded-2xl px-4 py-2 {message.sender ===
+					'user'
 						? 'bg-sky-500 text-white'
 						: 'bg-gray-100'}"
 				>
-					{message.text}
+					{@html message.text}
 				</div>
 			</div>
 		{/each}
@@ -88,12 +141,12 @@
 		<input
 			type="text"
 			bind:value={newMessage}
-			on:keydown={handleKeydown}
+			onkeydown={handleKeydown}
 			placeholder="Type your message..."
 			class="focus:ring-primary flex-1 rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:outline-none focus:ring-2"
 		/>
 		<button
-			on:click={sendMessage}
+			onclick={sendMessage}
 			class="rounded-md bg-sky-500 px-4 py-2 text-white transition-opacity hover:opacity-90"
 		>
 			Send

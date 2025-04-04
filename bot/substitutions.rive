@@ -1,0 +1,110 @@
+! version = 2.0
+
+// Basic Substitutions
+! sub what's = what is
+! sub whats = what is
+! sub wana = want to
+! sub can't = cannot
+! sub cant = cannot
+! sub i'm = i am
+! sub im = i am
+! sub you're = you are
+! sub youre = you are
+! sub how's = how is
+! sub hows = how is
+! sub don't = do not
+! sub dont = do not
+! sub doesn't = does not
+! sub doesnt = does not
+! sub isn't = is not
+! sub isnt = is not
+! sub aren't = are not
+! sub arent = are not
+! sub it's = it is
+! sub its = it is
+! sub that's = that is
+! sub thats = that is
+! sub there's = there is
+! sub theres = there is
+! sub where's = where is
+! sub wheres = where is
+! sub who's = who is
+! sub whos = who is
+! sub why's = why is
+! sub whys = why is
+! sub won't = will not
+! sub wont = will not
+
+// FHE-Related Substitutions
+! sub FHE = fhe
+! sub F.H.E. = fhe
+! sub fhe = fhe
+! sub fully homomorphic encryption = fhe
+! sub fully-homomorphic encryption = fhe
+! sub fully homomorphic encrytpion = fhe
+! sub fully-homomorphic encrytpion = fhe
+! sub homomorphic encryption = fhe
+! sub homomorphic encrytpion = fhe
+! sub homomorphic = homomorphic
+! sub homomorphism = homomorphism
+! sub homomorphic = homomorphic
+! sub homorphic = homomorphic
+! sub homomorphik = homomorphic
+! sub homomorfic = homomorphic
+! sub homomorphick = homomorphic
+! sub homomorfick = homomorphic
+! sub homomorhpic = homomorphic
+! sub homomorpic = homomorphic
+! sub homormophic = homomorphic
+! sub homomorphizm = homomorphism
+! sub homomorphizim = homomorphism
+! sub homomorphysm = homomorphism
+! sub homomorphism = homomorphism
+! sub it = fhe
+
+// Lattice-Related Substitutions
+! sub lattice = lattice
+! sub latice = lattice
+! sub lattise = lattice
+! sub latise = lattice
+! sub lattises = lattices
+! sub latices = lattices
+! sub lattices = lattices
+! sub lwe = learning with errors
+! sub LWE = learning with errors
+! sub L.W.E = learning with errors
+! sub rlwe = ring learning with errors
+! sub RLWE = ring learning with errors
+! sub R.L.W.E = ring learning with errors
+
+// Cryptography-Related Substitutions
+! sub crypto = cryptography
+! sub cryptography = cryptography
+! sub cryptograpy = cryptography
+! sub cryptograyphy = cryptography
+! sub cryptografie = cryptography
+! sub cryptographi = cryptography
+! sub cryptographic = cryptographic
+! sub cryptografic = cryptographic
+! sub encrypt = encrypt
+! sub encrytion = encryption
+! sub encription = encryption
+! sub encryped = encrypted
+! sub encripted = encrypted
+! sub encrpytion = encryption
+! sub encryptian = encryption
+! sub quantum = quantum
+! sub quatum = quantum
+! sub quantom = quantum
+
+// Arrays
+! array yes = yes yeah yep yup ya yea sure definitely absolutely ok okay right correct true
+! array Yes = Yes Yeah Yep Yup Ya Yea Sure Definitely Absolutely Ok Okay Right Correct True
+! array no = no nah nope not never negative false incorrect wrong
+! array No = No Nah Nope Not Never Negative False Incorrect Wrong
+! array greeting = hi hello hey greetings howdy
+! array Greeting = Hi Hello Hey Greetings Howdy
+! array thanks = thanks thank thankyou thx ty
+! array Thanks = Thanks Thank Thankyou Thx Ty
+! array bye = bye goodbye cya farewell exit quit
+! array Bye = Bye Goodbye Cya Farewell Exit Quit
