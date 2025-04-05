@@ -3,8 +3,9 @@ This is a chat bot built for CSC332 built using SvelteKit and [RiveScript](www.r
 
 
 ## Installation
-1. `pip install -r ./requirements.txt`
-2. `python3 ./main.py`
+1. `cd bot`
+2. `pip install -r ./requirements.txt`
+3. `python3 ./main.py`
 
 ## Credits
 - Mio Mahoney
